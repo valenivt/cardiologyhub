@@ -1,0 +1,6 @@
+{
+  "name": "Cardiology Hub - Media Pembelajaran Fisiologi Sirkulasi SMA Kelas XI",
+  "description": "Aplikasi edukasi interaktif fisiologi sistem sirkulasi darah manusia: peredaran darah pulmonalis, sistemik, anatomi jantung 3D, dan dinamika tekanan darah merujuk kurikulum Erlangga SMA Kelas XI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
