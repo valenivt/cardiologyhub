@@ -41,7 +41,7 @@ export const ThreeDModelTab: React.FC<ThreeDModelTabProps> = ({ isDark }) => {
               Model 3D Anatomi Jantung Manusia
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-              Eksplorasi spasial 3D organ jantung lengkap dengan arkus aorta, trunkus pulmonalis, vena kava, serta ventrikel &amp; atrium.
+              Eksplorasi 3D struktur jantung, termasuk aorta, trunkus pulmonalis, vena kava, atrium, dan ventrikel.
             </p>
           </div>
 
@@ -56,7 +56,7 @@ export const ThreeDModelTab: React.FC<ThreeDModelTabProps> = ({ isDark }) => {
               }`}
             >
               <i className="fa-solid fa-microchip text-xs"></i>
-              <span>3D WebGL (Pasti Berfungsi)</span>
+              <span>3D WebGL</span>
             </button>
             <button
               onClick={() => setViewerMode('sketchfab')}
@@ -80,15 +80,6 @@ export const ThreeDModelTab: React.FC<ThreeDModelTabProps> = ({ isDark }) => {
               selectedPartId={selectedPart.id}
               onSelectPartById={handleSelectPartById}
             />
-            <div className="mt-3 flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400 gap-2">
-              <span>
-                <i className="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i>
-                Engine: <strong>Native WebGL 3D (Three.js)</strong> · Render langsung di browser tanpa ketergantungan jaringan eksternal.
-              </span>
-              <span className="font-mono text-[11px] text-slate-400">
-                Fitur: Rotasi 360°, Zoom, Denyut Animasi, Mode X-Ray &amp; Pin Hotspot
-              </span>
-            </div>
           </div>
         ) : (
           <div className="space-y-3">
@@ -274,10 +265,6 @@ export const ThreeDModelTab: React.FC<ThreeDModelTabProps> = ({ isDark }) => {
           {/* Description & Mechanics */}
           <div className="space-y-4 text-sm">
             <div>
-              <h4 className="font-semibold text-slate-900 dark:text-white text-xs uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-                <i className="fa-solid fa-align-left text-slate-400"></i>
-                Deskripsi Morfologis
-              </h4>
               <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-xs md:text-sm">
                 {selectedPart.description}
               </p>
@@ -286,7 +273,7 @@ export const ThreeDModelTab: React.FC<ThreeDModelTabProps> = ({ isDark }) => {
             <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
               <h4 className="font-semibold text-slate-900 dark:text-white text-xs uppercase tracking-wider flex items-center gap-1.5">
                 <i className="fa-solid fa-gears text-rose-500"></i>
-                Fungsi &amp; Mekanisme Fisiologis
+                FUNGSI
               </h4>
               <p className="text-slate-600 dark:text-slate-300 text-xs md:text-sm leading-relaxed">
                 {selectedPart.functionDetail}
@@ -309,7 +296,7 @@ export const ThreeDModelTab: React.FC<ThreeDModelTabProps> = ({ isDark }) => {
             <div className="p-4 rounded-xl bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/50">
               <div className="flex items-center gap-2 text-xs font-bold text-amber-800 dark:text-amber-300 mb-1">
                 <i className="fa-solid fa-book-open"></i>
-                Rujukan Resmi Buku Erlangga Kelas XI
+                Kutipan dari Buku Erlangga
               </div>
               <p className="text-xs text-amber-900 dark:text-amber-200/90 italic leading-relaxed">
                 "{selectedPart.erlanggaNote}"

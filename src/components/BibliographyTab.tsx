@@ -122,8 +122,6 @@ export const BibliographyTab: React.FC<BibliographyTabProps> = ({ isDark }) => {
     return selectedAnswers[q.id] === q.correctIndex ? acc + 1 : acc;
   }, 0);
 
-  const integratedPhotosCount = TEAM_MEMBERS.length;
-
   return (
     <div className="space-y-8">
       {/* 1. Official Book Citation & Online Medical Reference Metadata */}
@@ -190,7 +188,7 @@ export const BibliographyTab: React.FC<BibliographyTabProps> = ({ isDark }) => {
           <div className="p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-1">
             <div className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
               <i className="fa-solid fa-bullseye text-rose-500"></i>
-              Capaian Pembelajaran (CP)
+              Capaian Pembelajaran
             </div>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
               Peserta didik mampu menganalisis keterkaitan antara struktur anatomi organ jantung, pembuluh darah, dan paru-paru dengan mekanisme bioproses sirkulasi ganda serta dinamika tekanan sistolik/diastolik.
@@ -200,12 +198,12 @@ export const BibliographyTab: React.FC<BibliographyTabProps> = ({ isDark }) => {
           <div className="p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-1">
             <div className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
               <i className="fa-solid fa-lightbulb text-amber-500"></i>
-              Tujuan Pembelajaran Khusus
+              Tujuan Pembelajaran
             </div>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              1. Menelusuri alur peredaran darah pulmoner dan sistemik tanpa kekeliruan katup.
-              2. Mengaitkan tebal otot bilik kiri dengan daya dorong sistole ±120 mmHg.
-              3. Menganalisis perbedaan histologis dan fisiologis arteri, vena, dan kapiler.
+              1. Memahami alur peredaran darah pulmoner dan sistemik melalui katup jantung.<br />
+              2. Menghubungkan ketebalan otot bilik kiri dengan tekanan sistole sekitar 120 mmHg.<br />
+              3. Membedakan struktur dan fungsi arteri, vena, serta kapiler.
             </p>
           </div>
         </div>
@@ -230,12 +228,6 @@ export const BibliographyTab: React.FC<BibliographyTabProps> = ({ isDark }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs px-3 py-1 rounded-full font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 flex items-center gap-1.5 shadow-sm">
-              <i className="fa-solid fa-circle-check text-emerald-600 dark:text-emerald-400 text-xs"></i>
-              <span>6 Anggota Terintegrasi Penuh</span>
-            </span>
-          </div>
         </div>
 
         {/* 3 UP & 3 DOWN GRID (Row 1: Valensya, Barbie, Brilliana | Row 2: Brendon & Nath side by side, Cayley) */}

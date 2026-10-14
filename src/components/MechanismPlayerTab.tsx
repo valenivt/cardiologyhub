@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   PULMONARY_STEPS,
   SYSTEMIC_STEPS,
@@ -14,7 +14,6 @@ export const MechanismPlayerTab: React.FC<MechanismPlayerTabProps> = ({ isDark }
   const [activePhase, setActivePhase] = useState<CirculationPhase>('pulmonary');
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
   const [isTourPlaying, setIsTourPlaying] = useState<boolean>(false);
-  const [cuffPressure, setCuffPressure] = useState<number>(120);
 
   const steps: MechanismStep[] =
     activePhase === 'pulmonary' ? PULMONARY_STEPS : SYSTEMIC_STEPS;
@@ -215,12 +214,10 @@ export const MechanismPlayerTab: React.FC<MechanismPlayerTabProps> = ({ isDark }
 
                         <div className="pt-1 flex flex-wrap items-center gap-2 text-[11px] font-medium text-slate-500 dark:text-slate-400">
                           <span className="flex items-center gap-1">
-                            <i className="fa-solid fa-crosshairs text-rose-500"></i>
                             Bagian: <strong className="text-slate-700 dark:text-slate-300">{step.highlightPart}</strong>
                           </span>
                           <span>·</span>
-                          <span className="flex items-center gap-1">
-                            <i className="fa-solid fa-lock text-amber-500"></i>
+                          <span>
                             Katup: {step.valveState}
                           </span>
                         </div>
@@ -237,7 +234,7 @@ export const MechanismPlayerTab: React.FC<MechanismPlayerTabProps> = ({ isDark }
             <div className="pb-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
               <div>
                 <span className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider">
-                  Sorotan Langkah #{currentStep.stepNumber}
+                  LANGKAH {currentStep.stepNumber}
                 </span>
                 <h3 className="text-base font-bold text-slate-900 dark:text-white mt-0.5">
                   {currentStep.title}
@@ -273,17 +270,6 @@ export const MechanismPlayerTab: React.FC<MechanismPlayerTabProps> = ({ isDark }
               </div>
             </div>
 
-            {/* Exact Erlangga Text Quote Box */}
-            <div className="p-4 rounded-xl bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 space-y-2">
-              <div className="flex items-center gap-2 text-xs font-bold text-amber-800 dark:text-amber-300">
-                <i className="fa-solid fa-quote-left"></i>
-                Kutipan Mutlak Buku Teks Erlangga Hlm. 167
-              </div>
-              <p className="text-xs text-amber-950 dark:text-amber-200 font-medium italic leading-relaxed">
-                "{currentStep.erlanggaQuote}"
-              </p>
-            </div>
-
             {/* Quick Flow Summary Diagram */}
             <div className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/40 text-xs space-y-1.5">
               <div className="font-semibold text-slate-800 dark:text-slate-200">
@@ -304,197 +290,105 @@ export const MechanismPlayerTab: React.FC<MechanismPlayerTabProps> = ({ isDark }
           </div>
         </div>
       ) : (
-        /* ==================== 3. TEKANAN DARAH (SISTOLE & DIASTOLE) SIMULATOR ==================== */
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Scientific Explanations */}
-          <div className="lg:col-span-7 space-y-5">
-            {/* Systole Card */}
-            <div className="bg-white dark:bg-slate-900 border border-rose-200 dark:border-rose-900/50 rounded-2xl p-5 shadow-sm space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="w-8 h-8 rounded-lg bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold text-sm">
-                    S
-                  </span>
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                      {BLOOD_PRESSURE_INFO.systole.title}
-                    </h3>
-                    <span className="text-xs text-rose-600 dark:text-rose-400 font-semibold font-mono">
-                      Nilai Normal: {BLOOD_PRESSURE_INFO.systole.valueRange}
-                    </span>
-                  </div>
-                </div>
-                <span className="px-2 py-1 rounded bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 text-[11px] font-medium">
-                  Kontraksi Ventrikel
+        /* ==================== 3. TEKANAN DARAH (SISTOLE & DIASTOLE) ==================== */
+        <div className="max-w-4xl mx-auto space-y-5">
+          {/* Systole Card */}
+          <div className="bg-white dark:bg-slate-900 border border-rose-200 dark:border-rose-900/50 rounded-2xl p-5 shadow-sm space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-8 h-8 rounded-lg bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold text-sm">
+                  S
                 </span>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                    {BLOOD_PRESSURE_INFO.systole.title}
+                  </h3>
+                  <span
+                    style={{ fontFamily: 'Verdana' }}
+                    className="text-xs text-rose-600 dark:text-rose-400 font-semibold font-mono"
+                  >
+                    Nilai Normal: {BLOOD_PRESSURE_INFO.systole.valueRange}
+                  </span>
+                </div>
               </div>
+              <span className="px-2 py-1 rounded bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 text-[11px] font-medium">
+                Kontraksi Ventrikel
+              </span>
+            </div>
 
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                {BLOOD_PRESSURE_INFO.systole.definition}
-              </p>
+            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              {BLOOD_PRESSURE_INFO.systole.definition}
+            </p>
 
-              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                <strong className="text-slate-800 dark:text-slate-200">Mekanisme:</strong> {BLOOD_PRESSURE_INFO.systole.mechanism}
+            <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 text-xs text-slate-600 dark:text-slate-300 space-y-3">
+              <div className="font-bold text-slate-800 dark:text-slate-200">
+                Mekanisme:
               </div>
-
-              <div className="text-[11px] text-slate-500 italic">
-                * {BLOOD_PRESSURE_INFO.systole.clinicalNote}
+              <div className="space-y-3">
+                {PULMONARY_STEPS.map((step) => (
+                  <div
+                    key={step.stepNumber}
+                    className="border-b border-slate-200/60 dark:border-slate-700/60 pb-2.5 last:border-b-0 last:pb-0 space-y-1"
+                  >
+                    <div className="font-bold text-slate-900 dark:text-white">
+                      {step.stepNumber}. {step.title}
+                    </div>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {step.action}
+                    </p>
+                    <div className="pt-0.5 flex flex-wrap items-center gap-2 text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                      <span>
+                        Bagian: <strong className="text-slate-700 dark:text-slate-300">{step.highlightPart}</strong>
+                      </span>
+                      <span>·</span>
+                      <span>
+                        Katup: {step.valveState}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Diastole Card */}
-            <div className="bg-white dark:bg-slate-900 border border-blue-200 dark:border-blue-900/50 rounded-2xl p-5 shadow-sm space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-sm">
-                    D
-                  </span>
-                  <div>
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                      {BLOOD_PRESSURE_INFO.diastole.title}
-                    </h3>
-                    <span className="text-xs text-blue-600 dark:text-blue-400 font-semibold font-mono">
-                      Nilai Normal: {BLOOD_PRESSURE_INFO.diastole.valueRange}
-                    </span>
-                  </div>
-                </div>
-                <span className="px-2 py-1 rounded bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 text-[11px] font-medium">
-                  Relaksasi Ventrikel
-                </span>
-              </div>
-
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                {BLOOD_PRESSURE_INFO.diastole.definition}
-              </p>
-
-              <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                <strong className="text-slate-800 dark:text-slate-200">Mekanisme:</strong> {BLOOD_PRESSURE_INFO.diastole.mechanism}
-              </div>
-
-              <div className="text-[11px] text-slate-500 italic">
-                * {BLOOD_PRESSURE_INFO.diastole.clinicalNote}
-              </div>
-            </div>
-
-            {/* Measurement Procedure from Erlangga p. 169 */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
-                <i className="fa-solid fa-clipboard-check text-emerald-500"></i>
-                Prosedur Pengukuran Tekanan Darah (Erlangga Hlm. 169)
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800">
-                  <div className="font-semibold text-slate-800 dark:text-slate-200 mb-1">
-                    Titik Pengukuran
-                  </div>
-                  <div className="text-slate-600 dark:text-slate-400 font-medium">
-                    {BLOOD_PRESSURE_INFO.measurement.site}
-                  </div>
-                </div>
-                <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800">
-                  <div className="font-semibold text-slate-800 dark:text-slate-200 mb-1">
-                    Peralatan Klinis
-                  </div>
-                  <div className="text-slate-600 dark:text-slate-400 font-medium">
-                    {BLOOD_PRESSURE_INFO.measurement.apparatus}
-                  </div>
-                </div>
-              </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                {BLOOD_PRESSURE_INFO.measurement.procedure}
-              </p>
+            <div className="text-[11px] text-slate-500 italic">
+              * {BLOOD_PRESSURE_INFO.systole.clinicalNote}
             </div>
           </div>
 
-          {/* Interactive Sphygmomanometer & Cuff Simulator */}
-          <div className="lg:col-span-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-5">
-            <div>
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <i className="fa-solid fa-gauge text-rose-500"></i>
-                Simulator Manometer Manset (Tensimeter)
-              </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                Geser nilai tekanan manset untuk mengamati auskultasi bunyi Korotkoff pada arteri brakialis.
-              </p>
-            </div>
-
-            {/* Cuff Pressure Slider */}
-            <div className="space-y-2 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700">
-              <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-slate-700 dark:text-slate-300">
-                  Tekanan Manset (Cuff Pressure)
+          {/* Diastole Card */}
+          <div className="bg-white dark:bg-slate-900 border border-blue-200 dark:border-blue-900/50 rounded-2xl p-5 shadow-sm space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-sm">
+                  D
                 </span>
-                <span className="text-lg font-mono font-bold text-rose-600 dark:text-rose-400 tabular-nums">
-                  {cuffPressure} <span className="text-xs font-normal">mmHg</span>
-                </span>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                    {BLOOD_PRESSURE_INFO.diastole.title}
+                  </h3>
+                  <span
+                    style={{ fontFamily: 'Verdana' }}
+                    className="text-xs text-blue-600 dark:text-blue-400 font-semibold font-mono"
+                  >
+                    Nilai Normal: {BLOOD_PRESSURE_INFO.diastole.valueRange}
+                  </span>
+                </div>
               </div>
-
-              <input
-                type="range"
-                min={40}
-                max={180}
-                step={2}
-                value={cuffPressure}
-                onChange={(e) => setCuffPressure(Number(e.target.value))}
-                className="w-full accent-rose-600 cursor-pointer"
-              />
-
-              <div className="flex justify-between text-[10px] text-slate-400 font-mono">
-                <span>40 mmHg</span>
-                <span className="text-blue-500 font-bold">80 (Diastole)</span>
-                <span className="text-rose-500 font-bold">120 (Sistole)</span>
-                <span>180 mmHg</span>
-              </div>
+              <span className="px-2 py-1 rounded bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-900 text-blue-700 dark:text-blue-300 text-[11px] font-medium">
+                Relaksasi Ventrikel
+              </span>
             </div>
 
-            {/* Auscultation Sound / Clinical Status Display */}
-            <div className="space-y-3">
-              <div className="text-xs font-semibold text-slate-900 dark:text-white">
-                Status Aliran &amp; Auskultasi Stetoskop:
-              </div>
+            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              {BLOOD_PRESSURE_INFO.diastole.definition}
+            </p>
 
-              {cuffPressure > 120 ? (
-                <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 text-xs text-amber-900 dark:text-amber-200 space-y-1">
-                  <div className="font-bold flex items-center gap-2">
-                    <i className="fa-solid fa-volume-xmark text-amber-600"></i>
-                    Arteri Brakialis Tertutup Total (Senyap / Silent)
-                  </div>
-                  <p className="text-[11px] leading-relaxed">
-                    Tekanan manset ({cuffPressure} mmHg) melampaui tekanan sistolik (120 mmHg). Arteri kolaps terjepit sehingga darah tidak dapat lewat. Tidak ada suara denyut yang terdengar.
-                  </p>
-                </div>
-              ) : cuffPressure >= 80 ? (
-                <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-900/60 text-xs text-emerald-900 dark:text-emerald-200 space-y-1">
-                  <div className="font-bold flex items-center gap-2 text-emerald-700 dark:text-emerald-300">
-                    <i className="fa-solid fa-volume-high text-emerald-600"></i>
-                    Bunyi Korotkoff Terdengar! (Aliran Darah Turbulen)
-                  </div>
-                  <p className="text-[11px] leading-relaxed">
-                    Tekanan manset berada di antara rentang sistole dan diastole (120 &gt; P &ge; 80 mmHg). Darah menyemprot turbulen setiap ventrikel berkontraksi, menghasilkan ketukan bunyi Korotkoff khas di stetoskop!
-                  </p>
-                </div>
-              ) : (
-                <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 text-xs text-blue-900 dark:text-blue-200 space-y-1">
-                  <div className="font-bold flex items-center gap-2 text-blue-700 dark:text-blue-300">
-                    <i className="fa-solid fa-water text-blue-600"></i>
-                    Aliran Laminar Bebas (Bunyi Menghilang)
-                  </div>
-                  <p className="text-[11px] leading-relaxed">
-                    Tekanan manset ({cuffPressure} mmHg) berada di bawah tekanan diastolik (80 mmHg). Arteri terbuka penuh, darah mengalir mulus tanpa turbulensi. Titik saat bunyi menghilang menandai batas Diastole.
-                  </p>
-                </div>
-              )}
+            <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <strong className="text-slate-800 dark:text-slate-200">Mekanisme:</strong> {BLOOD_PRESSURE_INFO.diastole.mechanism}
             </div>
 
-            {/* Quick Summary Pill Strip */}
-            <div className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 text-xs bg-slate-50 dark:bg-slate-950/40 space-y-1">
-              <div className="text-slate-500 font-medium">Standar Tekanan Remaja/Dewasa Normal:</div>
-              <div className="font-mono font-bold text-slate-800 dark:text-slate-200 text-sm">
-                120 / 80 mmHg
-              </div>
-              <div className="text-[11px] text-slate-500">
-                (Sistole: 120 mmHg / Diastole: 80 mmHg)
-              </div>
+            <div className="text-[11px] text-slate-500 italic">
+              * {BLOOD_PRESSURE_INFO.diastole.clinicalNote}
             </div>
           </div>
         </div>

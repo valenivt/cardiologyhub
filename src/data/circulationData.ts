@@ -150,7 +150,7 @@ export const PULMONARY_STEPS: MechanismStep[] = [
   {
     stepNumber: 1,
     title: 'Kontraksi Ventrikel Kanan',
-    action: 'Ventrikel kanan (bilik kanan) berkontraksi secara ritmis, menciptakan dorongan tekanan awal untuk memompa darah ber-CO₂.',
+    action: 'Ventrikel kanan berkontraksi untuk memompa darah kaya CO₂.',
     valveState: 'Memicu pergerakan daun katup atrioventrikular.',
     gasState: 'co2',
     erlanggaQuote: 'Ventrikel kanan berkontraksi...',
@@ -160,7 +160,7 @@ export const PULMONARY_STEPS: MechanismStep[] = [
   {
     stepNumber: 2,
     title: 'Penutupan Katup Trikuspidalis',
-    action: 'Katup trikuspidalis menutup rapat akibat lonjakan tekanan intraventrikel, mengunci lubang antara atrium kanan dan ventrikel kanan.',
+    action: 'Katup menutup agar darah tidak kembali ke atrium kanan.',
     valveState: 'Katup Trikuspid TERTUTUP (Mencegah regurgitasi darah ke atrium kanan)',
     gasState: 'co2',
     erlanggaQuote: '...katup trikuspid tertutup...',
@@ -169,18 +169,18 @@ export const PULMONARY_STEPS: MechanismStep[] = [
   },
   {
     stepNumber: 3,
-    title: 'Pembukaan Katup Semilunar Pulmonal',
-    action: 'Tekanan ventrikel kanan melampaui tekanan di trunkus pulmonalis, mendesak katup semilunar terbuka lebar.',
-    valveState: 'Katup Semilunaris Paru-Paru TERBUKA',
+    title: 'Pembukaan Katup Pulmonalis',
+    action: 'Katup terbuka saat tekanan ventrikel kanan melebihi tekanan arteri pulmonalis.',
+    valveState: 'Katup Pulmonalis TERBUKA',
     gasState: 'co2',
     erlanggaQuote: '...katup semilunar arteri paru-paru terbuka...',
-    highlightPart: 'Katup Semilunar Pulmonalis',
+    highlightPart: 'Katup Pulmonalis',
     icon: 'fa-door-open'
   },
   {
     stepNumber: 4,
     title: 'Ejeksi ke Arteri Pulmonalis',
-    action: 'Darah kaya CO₂ dari ventrikel kanan disemburkan ke Arteri Pulmonalis (Pulmonary Artery) menuju pulmo kanan & pulmo kiri.',
+    action: 'Darah kaya CO₂ mengalir menuju paru-paru.',
     valveState: 'Aliran deras searah menuju cabang arteri paru-paru kanan & kiri',
     gasState: 'co2',
     erlanggaQuote: '...darah kaya CO₂ dari ventrikel kanan dibawa oleh Pulmonary Artery menuju paru-paru kanan & kiri...',
@@ -189,21 +189,21 @@ export const PULMONARY_STEPS: MechanismStep[] = [
   },
   {
     stepNumber: 5,
-    title: 'Pertukaran Gas di Kapiler Paru-Paru',
-    action: 'Di jaringan kapiler alveolus pulmo, darah melepaskan CO₂ ke rongga alveolus (difusi keluar) dan mengikat O₂ dari udara pernapasan (difusi masuk ke Hb).',
-    valveState: 'Difusi gas alveolar: pO₂ naik dari ~40 menjadi ~100 mmHg; pCO₂ turun dari ~45 menjadi ~40 mmHg',
+    title: 'Pertukaran Gas di Alveolus',
+    action: 'Darah melepaskan CO₂ dan menyerap O₂.',
+    valveState: 'Difusi gas: darah melepaskan CO₂ dan menyerap O₂ di alveolus',
     gasState: 'o2',
     erlanggaQuote: '...di paru-paru darah melepaskan CO₂ dan mengambil O₂...',
-    highlightPart: 'Kapiler Alveolus Paru-Paru',
+    highlightPart: 'Alveolus Paru-Paru',
     icon: 'fa-lungs'
   },
   {
     stepNumber: 6,
-    title: 'Kembali via Vena Pulmonalis ke Atrium Kiri',
-    action: 'Darah kaya O₂ dihantarkan oleh Vena Pulmonalis (Pulmonary Vein) menuju atrium kiri. Selanjutnya ventrikel relaksasi, katup bikuspid terbuka, dan darah mengalir masuk ke ventrikel kiri.',
-    valveState: 'Katup Bikuspid TERBUKA, Ventrikel kiri relaksasi menerima darah teroksigenasi',
+    title: 'Kembali ke Atrium Kiri',
+    action: 'Darah kaya O₂ kembali melalui vena pulmonalis ke atrium kiri, lalu menuju ventrikel kiri melalui katup bikuspidalis.',
+    valveState: 'Katup Bikuspid TERBUKA, darah mengalir ke ventrikel kiri',
     gasState: 'o2',
-    erlanggaQuote: '...darah kaya O₂ dibawa oleh Pulmonary Vein menuju atrium kiri ➔ ventrikel relaksasi ➔ katup bikuspid terbuka ➔ darah mengalir ke ventrikel kiri.',
+    erlanggaQuote: '...darah kaya O₂ dibawa oleh Pulmonary Vein menuju atrium kiri ➔ katup bikuspid terbuka ➔ darah mengalir ke ventrikel kiri.',
     highlightPart: 'Vena Pulmonalis & Atrium Kiri',
     icon: 'fa-circle-arrow-down'
   }

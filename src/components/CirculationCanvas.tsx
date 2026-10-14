@@ -627,7 +627,7 @@ export const CirculationCanvas: React.FC<CirculationCanvasProps> = ({ isDark }) 
                 )}
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Sirkulasi Pulmonalis (Atas) &amp; Sirkulasi Sistemik (Bawah) · Jantung Diperbesar &amp; Aliran Tembus
+                Sirkulasi Pulmonalis (Atas) &amp; Sirkulasi Sistemik (Bawah)
               </p>
             </div>
           </div>
@@ -832,9 +832,6 @@ export const CirculationCanvas: React.FC<CirculationCanvasProps> = ({ isDark }) 
               <i className="fa-solid fa-gauge-high text-sky-500"></i>
               Tekanan Parsial Gas Darah (mmHg)
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-              Fisiologi Difusi Gas Alveolus &amp; Jaringan Tubuh
-            </p>
           </div>
 
           <div className="space-y-3">
@@ -889,12 +886,10 @@ export const CirculationCanvas: React.FC<CirculationCanvasProps> = ({ isDark }) 
             <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800 text-xs space-y-2">
               <div className="font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
                 <i className="fa-solid fa-arrows-spin text-emerald-500"></i>
-                Hukum Difusi Fisiologis (Erlangga Hlm. 167)
+                Hukum Difusi
               </div>
               <p className="text-[11px] leading-relaxed text-slate-600 dark:text-slate-400">
-                Gas berdifusi menuruni gradien tekanan parsial dari area bertekanan tinggi ke rendah.
-                Di alveolus paru (pO₂ 104 mmHg), gas O₂ berdifusi masuk ke hemoglobin eritrosit.
-                Di jaringan tubuh (pCO₂ sel &gt; 45 mmHg), gas CO₂ berdifusi masuk ke dalam aliran darah.
+                Gas berpindah dari tekanan parsial tinggi ke rendah. O₂ berdifusi dari alveolus ke darah, sedangkan CO₂ berdifusi dari jaringan tubuh ke darah.
               </p>
             </div>
           </div>

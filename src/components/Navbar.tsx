@@ -16,9 +16,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const navTabs: { id: ActiveTab; label: string; icon: string }[] = [
     { id: 'simulation', label: 'Simulasi Sirkulasi', icon: 'fa-route' },
-    { id: 'model3d', label: 'Model 3D & Anatomi', icon: 'fa-cube' },
+    { id: 'model3d', label: '3D Model', icon: 'fa-cube' },
     { id: 'mechanism', label: 'Mekanisme', icon: 'fa-book-open' },
-    { id: 'literature', label: 'Daftar Pustaka & Literatur', icon: 'fa-bookmark' }
+    { id: 'literature', label: 'Daftar Pustaka', icon: 'fa-bookmark' }
   ];
 
   return (
