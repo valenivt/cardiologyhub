@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   VESSEL_COMPARISON_TABLE,
   QUIZ_QUESTIONS,
@@ -12,10 +12,120 @@ interface BibliographyTabProps {
 const HALODOC_URL =
   'https://www.halodoc.com/artikel/ini-fungsi-jantung-manusia-dan-bagian-bagiannya?srsltid=AU7gw4V4byxtbdTqwqcIatev1oFJxrChVmvNxlFUBDA1SZLAvL9Tocp_';
 
+interface TeamMember {
+  id: string;
+  name: string;
+  fileName: string;
+  displayName: string;
+  role: string;
+  initials: string;
+  avatarBg: string;
+  avatarColor: string;
+}
+
+const TEAM_MEMBERS: TeamMember[] = [
+  // --- ROW 1 (3 UP) ---
+  {
+    id: 'valensya',
+    name: 'Valensya Isadora Tan',
+    fileName: 'WhatsApp Image 2026-10-14 at 8.46.13 AM.jpeg',
+    displayName: 'Valensya Isadora Tan',
+    role: 'Penyusun Fisiologi Sirkulasi',
+    initials: 'VT',
+    avatarBg: 'bg-emerald-100 dark:bg-emerald-950/70',
+    avatarColor: 'text-emerald-700 dark:text-emerald-300'
+  },
+  {
+    id: 'barbie',
+    name: 'Barbie Aprillia Juanda',
+    fileName: 'barbie.jpeg',
+    displayName: 'Barbie Aprillia Juanda',
+    role: 'Peneliti Anatomi & Katup Jantung',
+    initials: 'BJ',
+    avatarBg: 'bg-rose-100 dark:bg-rose-950/70',
+    avatarColor: 'text-rose-700 dark:text-rose-300'
+  },
+  {
+    id: 'brilliana',
+    name: 'Brilliana Wennardo',
+    fileName: 'brilliana wennardo.jpeg',
+    displayName: 'Brilliana Wennardo',
+    role: 'Peneliti Sirkulasi Pulmonalis',
+    initials: 'BW',
+    avatarBg: 'bg-amber-100 dark:bg-amber-950/70',
+    avatarColor: 'text-amber-700 dark:text-amber-300'
+  },
+
+  // --- ROW 2 (3 DOWN) - BRENDON & NATH SIDE BY SIDE ---
+  {
+    id: 'brendon',
+    name: 'Brendon Maximillian Lim',
+    fileName: 'brendon.jpeg',
+    displayName: 'Brendon Maximillian Lim',
+    role: 'Peneliti Dinamika Tekanan Darah',
+    initials: 'BL',
+    avatarBg: 'bg-blue-100 dark:bg-blue-950/70',
+    avatarColor: 'text-blue-700 dark:text-blue-300'
+  },
+  {
+    id: 'nath',
+    name: 'Nathania Nadira To',
+    fileName: 'nath.jpeg',
+    displayName: 'Nathania Nadira To',
+    role: 'Peneliti Sirkulasi Sistemik',
+    initials: 'NT',
+    avatarBg: 'bg-purple-100 dark:bg-purple-950/70',
+    avatarColor: 'text-purple-700 dark:text-purple-300'
+  },
+  {
+    id: 'cayley',
+    name: 'Cayley McLin',
+    fileName: 'cayley mclin.jpeg',
+    displayName: 'Cayley McLin',
+    role: 'Penyusun Komparasi Vaskular',
+    initials: 'CM',
+    avatarBg: 'bg-teal-100 dark:bg-teal-950/70',
+    avatarColor: 'text-teal-700 dark:text-teal-300'
+  }
+];
+
 export const BibliographyTab: React.FC<BibliographyTabProps> = ({ isDark }) => {
   // Quiz state
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
   const [showResults, setShowResults] = useState<boolean>(false);
+
+  // Custom photo overrides from localStorage or local upload
+  const [memberPhotos, setMemberPhotos] = useState<Record<string, string>>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('cardiology_team_photos');
+        if (saved) return JSON.parse(saved);
+      } catch (e) {
+        // Ignore JSON error
+      }
+    }
+    return {};
+  });
+
+  const handlePhotoUpload = (memberId: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const dataUrl = reader.result as string;
+        setMemberPhotos((prev) => {
+          const next = { ...prev, [memberId]: dataUrl };
+          try {
+            localStorage.setItem('cardiology_team_photos', JSON.stringify(next));
+          } catch (err) {
+            // Storage quota warning
+          }
+          return next;
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleSelectOption = (questionId: number, optionIdx: number) => {
     if (showResults) return;
@@ -124,7 +234,148 @@ export const BibliographyTab: React.FC<BibliographyTabProps> = ({ isDark }) => {
         </div>
       </div>
 
-      {/* 2. INTERACTIVE VISUAL CARD 1: FUNGSI BAGIAN-BAGIAN JANTUNG (HALODOC) */}
+      {/* 2. KELOMPOK 6 — TIM PENYUSUN & PENELITI (3 UP & 3 DOWN, BRENDON & NATH SIDE BY SIDE) */}
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 to-amber-500 text-white flex items-center justify-center shadow-md">
+              <i className="fa-solid fa-users text-lg"></i>
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-extrabold uppercase tracking-widest px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300">
+                  Tim Penyusun Media
+                </span>
+                <span className="text-xs text-slate-500 dark:text-slate-400 hidden sm:inline">
+                  Biologi SMA Kelas XI
+                </span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-0.5">
+                Kelompok 6
+              </h3>
+            </div>
+          </div>
+
+          <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
+            <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 font-mono font-bold text-slate-700 dark:text-slate-300">
+              6 Anggota
+            </span>
+            <span className="hidden md:inline">· Susunan 3 Atas &amp; 3 Bawah</span>
+          </div>
+        </div>
+
+        {/* 3 UP & 3 DOWN GRID (brendon & nath side by side in row 2) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {TEAM_MEMBERS.map((member, idx) => {
+            const uploadedImg = memberPhotos[member.id];
+            // Primary path candidates to look for image in public or root
+            const imageCandidates = [
+              uploadedImg,
+              `/${member.fileName}`,
+              `/team/${member.fileName}`,
+              `/images/team/${member.fileName}`
+            ].filter(Boolean) as string[];
+
+            return (
+              <div
+                key={member.id}
+                className="bg-slate-50/70 dark:bg-slate-800/40 rounded-2xl border border-slate-200/90 dark:border-slate-700/80 p-4 shadow-sm hover:shadow-md transition-all flex flex-col group"
+              >
+                {/* Image Frame Container */}
+                <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden bg-slate-200 dark:bg-slate-800 border border-slate-300/60 dark:border-slate-700 shadow-inner flex items-center justify-center">
+                  {/* Photo Display with Graceful Fallback */}
+                  <img
+                    src={imageCandidates[0]}
+                    alt={member.displayName}
+                    onError={(e) => {
+                      // Try fallback to standard encoded path or hide if none
+                      const target = e.currentTarget;
+                      if (target.src.includes(member.fileName) && !target.src.includes('public/')) {
+                        target.src = `/team/${member.fileName}`;
+                      } else {
+                        target.style.display = 'none';
+                        const fallbackDiv = target.parentElement?.querySelector('.member-fallback');
+                        if (fallbackDiv) {
+                          (fallbackDiv as HTMLElement).style.display = 'flex';
+                        }
+                      }
+                    }}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                  />
+
+                  {/* Fallback Display if image file is not on server disk */}
+                  <div
+                    className={`member-fallback absolute inset-0 hidden flex-col items-center justify-center p-4 text-center ${member.avatarBg}`}
+                  >
+                    <div
+                      className={`w-16 h-16 rounded-2xl ${member.avatarBg} ${member.avatarColor} border-2 border-current/20 flex items-center justify-center text-xl font-extrabold shadow-sm mb-2`}
+                    >
+                      {member.initials}
+                    </div>
+                    <span className={`text-xs font-bold ${member.avatarColor}`}>
+                      {member.displayName}
+                    </span>
+                    <span className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 font-mono">
+                      {member.fileName}
+                    </span>
+                    <label className="mt-3 cursor-pointer px-2.5 py-1 rounded-lg bg-white dark:bg-slate-900 text-[10px] font-semibold text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:bg-slate-100 shadow-sm transition-colors">
+                      <i className="fa-solid fa-upload mr-1"></i> Ganti Foto
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => handlePhotoUpload(member.id, e)}
+                      />
+                    </label>
+                  </div>
+
+                  {/* Overlay Index Badge (1 to 6) */}
+                  <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-slate-900/70 backdrop-blur-md text-white text-[10px] font-mono font-bold">
+                    #{idx + 1}
+                  </div>
+
+                  {/* Quick Upload Action on Hover */}
+                  <label
+                    title="Unggah atau ganti foto anggota ini"
+                    className="absolute top-2.5 right-2.5 opacity-0 group-hover:opacity-100 cursor-pointer p-1.5 rounded-lg bg-slate-900/80 hover:bg-rose-600 text-white text-xs backdrop-blur-md transition-all shadow-md"
+                  >
+                    <i className="fa-solid fa-camera"></i>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => handlePhotoUpload(member.id, e)}
+                    />
+                  </label>
+                </div>
+
+                {/* Caption Under the Image with Name (Required by user) */}
+                <div className="mt-3 text-center space-y-1">
+                  <h4 className="text-sm font-extrabold text-slate-900 dark:text-white tracking-tight">
+                    {member.displayName}
+                  </h4>
+                  <div className="text-xs text-rose-600 dark:text-rose-400 font-medium">
+                    {member.role}
+                  </div>
+                  <div className="text-[10px] text-slate-400 dark:text-slate-500 font-mono truncate">
+                    File: {member.fileName}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>
+            <i className="fa-solid fa-circle-check text-emerald-500 mr-1.5"></i>
+            Baris Atas: <strong>Valensya</strong>, <strong>Barbie</strong>, <strong>Brilliana</strong> · Baris Bawah: <strong>Brendon</strong> &amp; <strong>Nathania</strong> (berdampingan), <strong>Cayley</strong>.
+          </span>
+          <span className="font-mono text-[11px]">Proyek Pembelajaran Biologi Kurikulum Merdeka</span>
+        </div>
+      </div>
+
+      {/* 3. INTERACTIVE VISUAL CARD 1: FUNGSI BAGIAN-BAGIAN JANTUNG (HALODOC) */}
       <a
         href={HALODOC_URL}
         target="_blank"
@@ -236,7 +487,7 @@ export const BibliographyTab: React.FC<BibliographyTabProps> = ({ isDark }) => {
         </div>
       </a>
 
-      {/* 3. INTERACTIVE VISUAL CARD 2: FUNGSI PEMBULUH DARAH UTAMA (HALODOC) */}
+      {/* 4. INTERACTIVE VISUAL CARD 2: FUNGSI PEMBULUH DARAH UTAMA (HALODOC) */}
       <a
         href={HALODOC_URL}
         target="_blank"
@@ -353,7 +604,7 @@ export const BibliographyTab: React.FC<BibliographyTabProps> = ({ isDark }) => {
         </div>
       </a>
 
-      {/* 4. Vessel Comparison Table (Arteri vs Vena vs Kapiler) */}
+      {/* 5. Vessel Comparison Table (Arteri vs Vena vs Kapiler) */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
         <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
           <div>
@@ -402,7 +653,7 @@ export const BibliographyTab: React.FC<BibliographyTabProps> = ({ isDark }) => {
         </div>
       </div>
 
-      {/* 5. Glossary of Terms */}
+      {/* 6. Glossary of Terms */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-4">
         <div className="border-b border-slate-100 dark:border-slate-800 pb-3">
           <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -431,7 +682,7 @@ export const BibliographyTab: React.FC<BibliographyTabProps> = ({ isDark }) => {
         </div>
       </div>
 
-      {/* 6. Interactive Quiz (Uji Pemahaman Siswa SMA) */}
+      {/* 7. Interactive Quiz (Uji Pemahaman Siswa SMA) */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
           <div>
