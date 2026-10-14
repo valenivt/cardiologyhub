@@ -77,6 +77,17 @@ export default function App() {
               <i className="fa-solid fa-list-ol text-xs"></i>
               <span>Tur Langkah</span>
             </button>
+            <button
+              onClick={() => setActiveTab('literature')}
+              className={`px-3 py-2 rounded-xl font-bold flex items-center gap-1.5 transition-all ${
+                activeTab === 'literature'
+                  ? 'bg-rose-600 text-white shadow-sm'
+                  : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700'
+              }`}
+            >
+              <i className="fa-solid fa-users text-xs"></i>
+              <span>Tim Kelompok 6</span>
+            </button>
           </div>
         </div>
 

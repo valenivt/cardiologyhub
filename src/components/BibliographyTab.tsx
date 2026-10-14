@@ -241,17 +241,27 @@ export const BibliographyTab: React.FC<BibliographyTabProps> = ({ isDark }) => {
                 key={member.id}
                 className="bg-slate-50/70 dark:bg-slate-800/40 rounded-2xl border border-slate-200/90 dark:border-slate-700/80 p-4 shadow-sm hover:shadow-md transition-all flex flex-col group relative"
               >
-                {/* Image Frame Container - Permanently displays integrated real photo from backend */}
-                <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden bg-slate-200 dark:bg-slate-800 border border-slate-300/70 dark:border-slate-700 shadow-inner flex items-center justify-center">
+                {/* Image Frame Container - Permanently displays integrated real photo */}
+                <div className={`relative aspect-[4/5] w-full rounded-xl overflow-hidden ${member.avatarBg} border border-slate-300/70 dark:border-slate-700 shadow-inner flex flex-col items-center justify-center`}>
+                  {/* Fallback initials underneath */}
+                  <div className={`flex flex-col items-center justify-center select-none ${member.avatarColor}`}>
+                    <span className="text-3xl font-extrabold tracking-wider">{member.initials}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider mt-1 opacity-80">{member.role}</span>
+                  </div>
+
                   <img
                     src={photoSrc}
                     alt={member.displayName}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
+                    onError={(e) => {
+                      // Hide broken image icon if image load fails
+                      e.currentTarget.style.display = 'none';
+                    }}
                   />
 
                   {/* Overlay Index Badge (1 to 6) */}
-                  <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-slate-900/75 backdrop-blur-md text-white text-[10px] font-mono font-bold shadow-sm">
+                  <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-slate-900/75 backdrop-blur-md text-white text-[10px] font-mono font-bold shadow-sm z-10">
                     #{idx + 1}
                   </div>
                 </div>

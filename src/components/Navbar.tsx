@@ -18,7 +18,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'simulation', label: 'Simulasi Sirkulasi', icon: 'fa-route' },
     { id: 'model3d', label: '3D Model', icon: 'fa-cube' },
     { id: 'mechanism', label: 'Mekanisme', icon: 'fa-book-open' },
-    { id: 'literature', label: 'Daftar Pustaka', icon: 'fa-bookmark' }
+    { id: 'literature', label: 'Daftar Pustaka & Tim', icon: 'fa-users' }
   ];
 
   return (
