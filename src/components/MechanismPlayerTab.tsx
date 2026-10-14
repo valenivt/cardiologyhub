@@ -51,54 +51,42 @@ export const MechanismPlayerTab: React.FC<MechanismPlayerTabProps> = ({ isDark }
   return (
     <div className="space-y-6">
       {/* Top Phase Switcher */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <i className="fa-solid fa-graduation-cap text-rose-500"></i>
-              Mekanisme Fisiologi Sistem Sirkulasi (Buku Erlangga Hlm. 167-169)
-            </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-              Urutan langkah demi langkah peredaran darah ganda dan dinamika tekanan darah (Sistole &amp; Diastole).
-            </p>
-          </div>
-
-          {/* Segmented Phase Buttons */}
-          <div className="flex items-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-semibold self-start sm:self-center">
-            <button
-              onClick={() => handlePhaseChange('pulmonary')}
-              className={`px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 ${
-                activePhase === 'pulmonary'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <i className="fa-solid fa-lungs text-xs"></i>
-              <span>1. Peredaran Pulmonalis</span>
-            </button>
-            <button
-              onClick={() => handlePhaseChange('systemic')}
-              className={`px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 ${
-                activePhase === 'systemic'
-                  ? 'bg-rose-600 text-white shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <i className="fa-solid fa-globe text-xs"></i>
-              <span>2. Peredaran Sistemik</span>
-            </button>
-            <button
-              onClick={() => handlePhaseChange('pressure')}
-              className={`px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 ${
-                activePhase === 'pressure'
-                  ? 'bg-amber-600 text-white shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <i className="fa-solid fa-heart-pulse text-xs"></i>
-              <span>3. Tekanan Darah</span>
-            </button>
-          </div>
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 sm:p-4 shadow-sm flex items-center justify-center">
+        {/* Segmented Phase Buttons */}
+        <div className="flex flex-wrap items-center justify-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-semibold">
+          <button
+            onClick={() => handlePhaseChange('pulmonary')}
+            className={`px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 ${
+              activePhase === 'pulmonary'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+          >
+            <i className="fa-solid fa-lungs text-xs"></i>
+            <span>1. Peredaran Pulmonalis</span>
+          </button>
+          <button
+            onClick={() => handlePhaseChange('systemic')}
+            className={`px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 ${
+              activePhase === 'systemic'
+                ? 'bg-rose-600 text-white shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+          >
+            <i className="fa-solid fa-globe text-xs"></i>
+            <span>2. Peredaran Sistemik</span>
+          </button>
+          <button
+            onClick={() => handlePhaseChange('pressure')}
+            className={`px-3 py-2 rounded-lg transition-all flex items-center gap-1.5 ${
+              activePhase === 'pressure'
+                ? 'bg-amber-600 text-white shadow-sm'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+          >
+            <i className="fa-solid fa-heart-pulse text-xs"></i>
+            <span>3. Tekanan Darah</span>
+          </button>
         </div>
       </div>
 
@@ -119,7 +107,7 @@ export const MechanismPlayerTab: React.FC<MechanismPlayerTabProps> = ({ isDark }
                   }`}
                 >
                   <i className={`fa-solid ${isTourPlaying ? 'fa-pause' : 'fa-play'}`}></i>
-                  <span>{isTourPlaying ? 'Jeda Tur' : 'Mulai Tur Animasi Langkah'}</span>
+                  <span>{isTourPlaying ? 'Jeda Simulasi' : 'Mulai Simulasi'}</span>
                 </button>
 
                 <button

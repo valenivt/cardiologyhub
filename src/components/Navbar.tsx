@@ -17,7 +17,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const navTabs: { id: ActiveTab; label: string; icon: string }[] = [
     { id: 'simulation', label: 'Simulasi Sirkulasi', icon: 'fa-route' },
     { id: 'model3d', label: 'Model 3D & Anatomi', icon: 'fa-cube' },
-    { id: 'mechanism', label: 'Mekanisme Buku (Hlm 167-169)', icon: 'fa-book-open' },
+    { id: 'mechanism', label: 'Mekanisme', icon: 'fa-book-open' },
     { id: 'literature', label: 'Daftar Pustaka & Literatur', icon: 'fa-bookmark' }
   ];
 
@@ -32,9 +32,6 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div>
             <h1 className="text-base font-extrabold tracking-tight text-slate-900 dark:text-white whitespace-nowrap flex items-center gap-2">
               Cardiology Hub
-              <span className="hidden sm:inline-block text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-700 dark:text-rose-300">
-                Erlangga XI
-              </span>
             </h1>
             <p className="text-[11px] text-slate-500 dark:text-slate-400 hidden md:block whitespace-nowrap">
               Fisiologi Sirkulasi Darah &amp; Dinamika Tekanan Darah

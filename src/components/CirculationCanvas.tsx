@@ -680,8 +680,7 @@ export const CirculationCanvas: React.FC<CirculationCanvasProps> = ({ isDark }) 
           )}
         </div>
 
-        <div className="w-full pt-3 mt-2 flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800">
-          <span>* Catatan: Partikel gas mengalir menembus ke dalam jantung (di bawah teks &amp; sekat) tanpa menutupi kata.</span>
+        <div className="w-full pt-3 mt-2 flex flex-wrap items-center justify-end text-xs text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800">
           <span className="font-mono tabular-nums">
             Status: {isCardiacArrest ? 'Henti Denyut' : isPlaying ? 'Memompa Normal' : 'Dijeda'} · Detak: {bpm} BPM
           </span>
